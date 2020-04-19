@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Getting started";
+}
+    <div class="row">
+        <h2>Getting started</h2>
+    </div>
+    <div class="row">
+        <h3>DB Initializer</h3>
+        <div style="margin-left:20px;">
+            <code>
+                CREATE TABLE [dbo].[db_products] <br />
+                (   <br />
+                [Id] BIGINT NOT NULL IDENTITY(1,1) PRIMARY KEY, <br />
+                [ProductName] NVARCHAR(255) NOT NULL <br />
+                )
+            </code>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <h3>Requests</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Uri</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>POST</td>
+                <td>api/product</td>
+                <td>Ann new product</td>
+                <td>i.e. HttpBody {"ProductName":"Test Product"}</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/product</td>
+                <td>List all products</td>
+                <td>i.e. api/product</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/product/{id}</td>
+                <td>Get product by id</td>
+                <td>i.e. api/product/1</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>api/products/?ids={id-id-id}</td>
+                <td>Get products by id string</td>
+                <td>i.e. api/products/?ids=1-2-3-4</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>api/product/{id}</td>
+                <td>Update product by id</td>
+                <td>i.e. api/product/1</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>api/product/{id}</td>
+                <td>Delete product by id</td>
+                <td>i.e. api/product/1</td>
+            </tr>
+        </table>
+    </div>
+
+    

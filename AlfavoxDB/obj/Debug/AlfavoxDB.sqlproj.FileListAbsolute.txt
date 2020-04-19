@@ -1,0 +1,10 @@
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\bin\Debug\AlfavoxDB.dacpac
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\bin\Debug\AlfavoxDB.dll
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\bin\Debug\AlfavoxDB.pdb
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.sqlprojAssemblyReference.cache
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\Model.xml
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\refactor.xml
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\postdeploy.sql
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\predeploy.sql
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.dll
+C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.pdb
