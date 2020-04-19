@@ -18,7 +18,7 @@ namespace AlfavoxAPI.Controllers
     {
         
         private ProductContext db;
-        private ProductService _service;
+        private IProductService _service;
 
         
 
@@ -35,7 +35,7 @@ namespace AlfavoxAPI.Controllers
             db = _db;
         }
 
-        public ProductController(ProductService service)
+        public ProductController(IProductService service)
         {
             _service = service;
             db = new ProductContext();

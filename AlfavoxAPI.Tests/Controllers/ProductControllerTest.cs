@@ -58,44 +58,7 @@ namespace AlfavoxAPI.Tests.Controllers
         }
 
 
-        [TestMethod]
-        public async Task GetSomeProducts()
-        {
-            //Arrange
-            ProductContext ctx = GetMockContext();
-            ProductController pc = new ProductController(ctx);
-
-            //Act
-            var result = await pc.GetProducts("1-2-3");
-            
-            //Assert
-            Assert.IsNotNull(result);          
-        }
-
-
-        [TestMethod]
-        public async Task GetSingleProduct()
-        {
-            //Arrange
-            ProductContext ctx = GetMockContext();
-            ProductController pc = new ProductController(ctx);
-            ProductService service = GetMockService();
-            Product pr = ctx.Products.ToList().FirstOrDefault();                        
-            
-            TestContext.WriteLine("Checking Id:"+ pr.Id.ToString());
-            TestContext.WriteLine("Checking Name:" + pr.ProductName);
-
-            //Act
-            var response = await service.FindAsync(1);            
-
-            TestContext.WriteLine("Response:"+response.ToString());
-
-            
-
-
-            //Assert
-            Assert.IsNotNull(response);
-        }
+        
 
 
 

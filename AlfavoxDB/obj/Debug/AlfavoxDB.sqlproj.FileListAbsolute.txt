@@ -8,3 +8,9 @@ C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\postdeploy.sql
 C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\predeploy.sql
 C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.dll
 C:\Users\slayz\source\repos\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.pdb
+c:\Users\slayz\Documents\GitHub\AlfavoxAPI\AlfavoxDB\bin\Debug\AlfavoxDB.dacpac
+c:\Users\slayz\Documents\GitHub\AlfavoxAPI\AlfavoxDB\bin\Debug\AlfavoxDB.dll
+c:\Users\slayz\Documents\GitHub\AlfavoxAPI\AlfavoxDB\bin\Debug\AlfavoxDB.pdb
+c:\Users\slayz\Documents\GitHub\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.sqlprojAssemblyReference.cache
+c:\Users\slayz\Documents\GitHub\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.dll
+c:\Users\slayz\Documents\GitHub\AlfavoxAPI\AlfavoxDB\obj\Debug\AlfavoxDB.pdb
