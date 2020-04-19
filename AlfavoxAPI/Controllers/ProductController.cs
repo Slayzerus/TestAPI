@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,19 +16,44 @@ namespace AlfavoxAPI.Controllers
 {
     public class ProductController : ApiController
     {
-        private ProductContext db = new ProductContext();
+        
+        private ProductContext db;
+        private ProductService _service;
+
+        
+
+
+        public ProductController() 
+        {
+
+            _service = new ProductService(new ProductContext());
+            db = new ProductContext();
+        }
+
+        public ProductController(ProductContext _db) 
+        {
+            db = _db;
+        }
+
+        public ProductController(ProductService service)
+        {
+            _service = service;
+            db = new ProductContext();
+        }
+
 
         // GET: api/Product
         public IQueryable<Product> GetProducts()
         {
-            return db.Products;
+            return db.Products;            
         }
 
         // GET: api/Product/5
         [ResponseType(typeof(Product))]
-        public async Task<IHttpActionResult> GetProduct(int id)
+        public async Task<IHttpActionResult> GetProduct(long id)
         {
-            Product product = await db.Products.FindAsync(id);
+            //Product product = await db.Products.FindAsync(id);
+            Product product = await _service.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -35,6 +61,7 @@ namespace AlfavoxAPI.Controllers
 
             return Ok(product);
         }
+
 
         // GET: api/Products/
         [Route("api/Products")]
@@ -56,7 +83,7 @@ namespace AlfavoxAPI.Controllers
 
         // PUT: api/Product/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProduct(int id, Product product)
+        public async Task<IHttpActionResult> PutProduct(long id, Product product)
         {
             if (!ModelState.IsValid)
             {
@@ -75,7 +102,7 @@ namespace AlfavoxAPI.Controllers
             {
                 await db.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException)
             {
                 if (!ProductExists(id))
                 {
@@ -107,7 +134,7 @@ namespace AlfavoxAPI.Controllers
 
         // DELETE: api/Product/5
         [ResponseType(typeof(Product))]
-        public async Task<IHttpActionResult> DeleteProduct(int id)
+        public async Task<IHttpActionResult> DeleteProduct(long id)
         {
             Product product = await db.Products.FindAsync(id);
             if (product == null)
@@ -130,9 +157,10 @@ namespace AlfavoxAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductExists(int id)
+        private bool ProductExists(long id)
         {
             return db.Products.Count(e => e.Id == id) > 0;
         }
     }
 }
+ 
