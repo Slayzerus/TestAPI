@@ -32,6 +32,7 @@ namespace AlfavoxAPI.Controllers
 
         public ProductController(ProductContext _db) 
         {
+            _service = new ProductService(new ProductContext());
             db = _db;
         }
 
@@ -51,8 +52,7 @@ namespace AlfavoxAPI.Controllers
         // GET: api/Product/5
         [ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> GetProduct(long id)
-        {
-            //Product product = await db.Products.FindAsync(id);
+        {            
             Product product = await _service.FindAsync(id);
             if (product == null)
             {
@@ -68,15 +68,8 @@ namespace AlfavoxAPI.Controllers
         [ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> GetProducts([FromUri] string ids)
         {
-            string[] keyss = ids.Split('-');
-            List<long> keys = new List<long>();
-            foreach (string k in keyss)
-            {
-                long sk = long.Parse(k);
-                if (!keys.Contains(sk)) { keys.Add(sk); }
-            }
-            List<Product> list =  await db.Products.Where(t => keys.Contains(t.Id)).ToListAsync();
-            if (list.Count > 0){ return Ok(list); }
+            List<Product> list = await _service.FindAsync(ids);
+            if (list != null && list.Count > 0){ return Ok(list); }
             else { return NotFound(); }
         }
 

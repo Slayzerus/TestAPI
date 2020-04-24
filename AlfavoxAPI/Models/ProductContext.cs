@@ -25,6 +25,7 @@ namespace AlfavoxAPI.Models
     public interface IProductService     
     {
         Task<Product> FindAsync(long id);
+        Task<List<Product>> FindAsync(string ids);
         Task<Product> AddAsync(Product model);
 
         Task<List<Product>> GetAllAsync();
@@ -55,6 +56,14 @@ namespace AlfavoxAPI.Models
         public async Task<Product> FindAsync(long id) 
         {
             return await _dbContext.Products.FindAsync(id);
+        }
+
+        public async Task<List<Product>> FindAsync(string ids)
+        {
+            string[] arr = ids.Split('-');
+            List<long> list = new List<long>();
+            foreach (string str in arr) { if (!list.Contains(long.Parse(str))){ list.Add(long.Parse(str)); } }
+            return await _dbContext.Products.Where(m => list.Contains(m.Id)).ToListAsync();
         }
 
         public async Task<Product> AddAsync(Product model)

@@ -27,13 +27,21 @@ namespace AlfavoxAPI.Tests.Controllers
             products = items;
             mockService = new Mock<IProductService>();
             mockService.Setup(svc => svc.FindAsync(1)).ReturnsAsync(new Product() { Id=1, ProductName = "Pen" });
+            mockService.Setup(svc => svc.FindAsync("1-2-3")).ReturnsAsync(new List<Product> { new Product() { Id = 1, ProductName = "Pen" }, new Product() { Id = 2, ProductName = "Pencil" } });
             controllerUnderTest = new ProductController(mockService.Object);
         }
     }
 
     [TestClass]
     public class ProductControllerTestAsync : BaseProductControllerTests
-    { 
+    {
+        private TestContext testContextInstance;
+
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
 
         private static readonly Product product_first = new Product() { Id = 1, ProductName = "Pen" };
         private static readonly Product product_second = new Product() { Id = 2, ProductName = "Pencil" };
@@ -46,23 +54,35 @@ namespace AlfavoxAPI.Tests.Controllers
         [TestMethod]
         public async Task GetSingleProduct()
         {
-            var result = await controllerUnderTest.GetProduct(1);
-            Assert.IsNotNull(result);
+            var result = await controllerUnderTest.GetProduct(1);            
+            var res = result as System.Web.Http.Results.OkNegotiatedContentResult<Product>;
+            if (res != null)
+            {
+                Product pr = res.Content as Product;
+                Assert.IsTrue(pr.Id == 1);
+            }
+                
         }
 
 
-        /*
+        
         [TestMethod]
         public async Task GetSomeProducts()
         {                        
-            //Act
             var result = await controllerUnderTest.GetProducts("1-2-3");
-
-            //Assert
-            Assert.IsNotNull(result);
+            
+            var res = result as System.Web.Http.Results.OkNegotiatedContentResult<List<Product>>;
+            if (res != null)
+            {
+                List<Product> pr = res.Content as List<Product>;                
+                Assert.IsTrue(pr.Count > 0);
+            }
+            else { Assert.IsTrue(false); }
+            
+            
         }
 
 
-        */
+        
     }
 }
